@@ -1,4 +1,4 @@
-FROM trzeci/emscripten AS builder
+FROM emscripten/emsdk AS builder
 
 ARG BUILD_TYPE=RelWithDebInfo
 
@@ -9,7 +9,7 @@ RUN git clone --recurse-submodules https://github.com/mosra/corrade/ && \
     cd .. && mkdir build-emscripten && cd build-emscripten && \
     cmake .. -DCMAKE_TOOLCHAIN_FILE="../toolchains/generic/Emscripten-wasm.cmake" \
         -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
-        -DCMAKE_INSTALL_PREFIX=/emsdk_portable/upstream/emscripten/system \
+        -DCMAKE_INSTALL_PREFIX=/emsdk/upstream/emscripten/system \
         -DBUILD_TESTS=OFF && \
     cmake --build . --target install && \
     cd ../../ && \
@@ -17,7 +17,7 @@ RUN git clone --recurse-submodules https://github.com/mosra/corrade/ && \
     cd magnum && mkdir build-emscripten && cd build-emscripten && \
     cmake .. -DCMAKE_TOOLCHAIN_FILE="../toolchains/generic/Emscripten-wasm.cmake" \
         -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
-        -DCMAKE_INSTALL_PREFIX=/emsdk_portable/upstream/emscripten/system \
+        -DCMAKE_INSTALL_PREFIX=/emsdk/upstream/emscripten/system \
         -DMAGNUM_DEPLOY_PREFIX=/srv/http/emscripten-webgl2 \
         -DTARGET_GLES2=OFF \
         -DWITH_AUDIO=ON \
