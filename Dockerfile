@@ -38,4 +38,5 @@ RUN git clone --recurse-submodules https://github.com/mosra/corrade/ && \
         -DWITH_AL_INFO=ON \
         -DBUILD_TESTS=OFF \
         -DBUILD_GL_TESTS=OFF && \
-    cmake --build . --target install
+    cmake --build . --target install && \
+    cd ../../ && rm -r corrade magnum
